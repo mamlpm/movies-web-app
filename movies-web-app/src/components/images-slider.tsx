@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { NavLink } from "react-router-dom";
 import useSliderReducer from "../hooks/slider-reducer";
 interface IImagesSliderProps {
   images: { imagesUrls: string; movieId: number }[];
@@ -21,33 +22,52 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
         </button>
       </div>
       <div className="image-1">
-        <img
-          src={
-            "https://image.tmdb.org/t/p/w342/" + props.images[count].imagesUrls
-          }
-        />
+        <NavLink to={`/rating/${props.images[count].movieId}`}>
+          <img
+            src={
+              "https://image.tmdb.org/t/p/w342/" +
+              props.images[count].imagesUrls
+            }
+          />
+        </NavLink>
       </div>
       <div className="image-2">
-        <img
-          src={
+        <NavLink
+          to={`/rating/${
             count + 1 >= props.images.length
-              ? "https://image.tmdb.org/t/p/w342/" +
-                props.images[count + 1 - props.images.length].imagesUrls
-              : "https://image.tmdb.org/t/p/w342/" +
-                props.images[1 + count].imagesUrls
-          }
-        />
+              ? props.images[count + 1 - props.images.length].movieId
+              : props.images[1 + count].movieId
+          }`}
+        >
+          <img
+            src={
+              count + 1 >= props.images.length
+                ? "https://image.tmdb.org/t/p/w342/" +
+                  props.images[count + 1 - props.images.length].imagesUrls
+                : "https://image.tmdb.org/t/p/w342/" +
+                  props.images[1 + count].imagesUrls
+            }
+          />
+        </NavLink>
       </div>
       <div className="image-3">
-        <img
-          src={
+        <NavLink
+          to={`/rating/${
             count + 2 >= props.images.length
-              ? "https://image.tmdb.org/t/p/w342/" +
-                props.images[count + 2 - props.images.length].imagesUrls
-              : "https://image.tmdb.org/t/p/w342/" +
-                props.images[2 + count].imagesUrls
-          }
-        />
+              ? props.images[count + 2 - props.images.length].movieId
+              : props.images[2 + count].movieId
+          }`}
+        >
+          <img
+            src={
+              count + 2 >= props.images.length
+                ? "https://image.tmdb.org/t/p/w342/" +
+                  props.images[count + 2 - props.images.length].imagesUrls
+                : "https://image.tmdb.org/t/p/w342/" +
+                  props.images[2 + count].imagesUrls
+            }
+          />
+        </NavLink>
       </div>
       <div className="right-arrow">
         <button className="slider-button" id="right-arrow" onClick={increase}>
