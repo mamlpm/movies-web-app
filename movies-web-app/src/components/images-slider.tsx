@@ -3,19 +3,13 @@ import { FC, useReducer } from "react";
 import ImageGallery from "react-image-gallery";
 import useSliderReducer from "../hooks/slider-reducer";
 interface IImagesSliderProps {
-  imagesUrls: string[];
+  images: { imagesUrls: string; movieId: number }[];
 }
 
 const ImagesSlider: FC<IImagesSliderProps> = (props) => {
   const [{ count }, { increase, decrease }] = useSliderReducer(
-    props.imagesUrls.length
+    props.images.length
   );
-  const images = props.imagesUrls.map((imageUrl) => {
-    return {
-      original: "https://image.tmdb.org/t/p/w342/" + imageUrl,
-      thumbnail: "https://image.tmdb.org/t/p/w185/" + imageUrl,
-    };
-  });
 
   return (
     <div className="slider">
@@ -25,23 +19,31 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
         </button>
       </div>
       <div className="image-1">
-        <img src={images[count].original} />
+        <img
+          src={
+            "https://image.tmdb.org/t/p/w342/" + props.images[count].imagesUrls
+          }
+        />
       </div>
       <div className="image-2">
         <img
           src={
-            count + 1 >= props.imagesUrls.length
-              ? images[count + 1 - props.imagesUrls.length].original
-              : images[1 + count].original
+            count + 1 >= props.images.length
+              ? "https://image.tmdb.org/t/p/w342/" +
+                props.images[count + 1 - props.images.length].imagesUrls
+              : "https://image.tmdb.org/t/p/w342/" +
+                props.images[1 + count].imagesUrls
           }
         />
       </div>
       <div className="image-3">
         <img
           src={
-            count + 2 >= props.imagesUrls.length
-              ? images[count + 2 - props.imagesUrls.length].original
-              : images[2 + count].original
+            count + 2 >= props.images.length
+              ? "https://image.tmdb.org/t/p/w342/" +
+                props.images[count + 2 - props.images.length].imagesUrls
+              : "https://image.tmdb.org/t/p/w342/" +
+                props.images[2 + count].imagesUrls
           }
         />
       </div>

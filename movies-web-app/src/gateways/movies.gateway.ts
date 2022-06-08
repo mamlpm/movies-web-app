@@ -9,14 +9,14 @@ export class MoviesGateway {
         })
     }
 
-    public async getFavouriteMovies(): Promise<IMovies> {
-        const response = await this.axios.get('movie/popular', {
+    public async getFavouriteMovies(category: "popular" | "top_rated" | "upcoming"): Promise<IMovies[]> {
+        const response = await this.axios.get('movie/' + category, {
             params: {
                 api_key: process.env.REACT_APP_MOVIE_DB_API_KEY,
                 language: 'es',
-                page: 20
+                page: 1
             }
         });
-        return response.data;
+        return response.data.results;
     }
 }
