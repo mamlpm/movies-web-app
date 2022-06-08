@@ -22,7 +22,6 @@ function useSliderReducer(sliderLength: number, initialValue?: number): any[] {
             case CountActionKind.DECREASE:
                 if (state.count === 0) return { count: sliderLength - 1 };
                 return { count: state.count - 1 };
-                break;
         }
     };
     const [state, dispatch] = useReducer(reducer, { count: initialValue ?? 0 });
