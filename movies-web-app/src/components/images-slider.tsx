@@ -1,6 +1,4 @@
-import { FC, useReducer } from "react";
-// import Slider from "react-slick";
-import ImageGallery from "react-image-gallery";
+import { FC } from "react";
 import useSliderReducer from "../hooks/slider-reducer";
 interface IImagesSliderProps {
   images: { imagesUrls: string; movieId: number }[];
