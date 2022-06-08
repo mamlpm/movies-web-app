@@ -5,9 +5,14 @@ import ImagesSlider from "./images-slider";
 interface IImagesSliderWrapperProps {
   queryType: "popular" | "top_rated" | "upcoming";
 }
+enum sliderNames {
+  popular = "Populares",
+  top_rated = "Más valoradas",
+  upcoming = "Próximos estrenos",
+}
 const ImagesSliderWrapper: FC<IImagesSliderWrapperProps> = (props) => {
   const moviesGateway = new MoviesGateway();
-  const { isLoading, error, data } = useQuery("movies", async () =>
+  const { isLoading, error, data } = useQuery(props.queryType, async () =>
     moviesGateway.getFavouriteMovies(props.queryType)
   );
 
@@ -23,6 +28,7 @@ const ImagesSliderWrapper: FC<IImagesSliderWrapperProps> = (props) => {
           images={data.map((item) => {
             return { imagesUrls: item.poster_path, movieId: item.id };
           })}
+          queriedData={sliderNames[props.queryType]}
         />
       )}
     </>

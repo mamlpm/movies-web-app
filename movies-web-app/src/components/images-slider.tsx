@@ -4,6 +4,7 @@ import ImageGallery from "react-image-gallery";
 import useSliderReducer from "../hooks/slider-reducer";
 interface IImagesSliderProps {
   images: { imagesUrls: string; movieId: number }[];
+  queriedData: string;
 }
 
 const ImagesSlider: FC<IImagesSliderProps> = (props) => {
@@ -13,6 +14,9 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
 
   return (
     <div className="slider">
+      <div className="slider-header">
+        <h1>{props.queriedData}</h1>
+      </div>
       <div className="left-arrow">
         <button className="slider-button" id="left-arrow" onClick={decrease}>
           {"<"}
