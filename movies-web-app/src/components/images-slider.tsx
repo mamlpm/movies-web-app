@@ -14,7 +14,7 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
   return (
     <div className="slider">
       <div className="left-arrow">
-        <button id="left-arrow" onClick={decrease}>
+        <button className="slider-button" id="left-arrow" onClick={decrease}>
           {"<"}
         </button>
       </div>
@@ -48,7 +48,7 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
         />
       </div>
       <div className="right-arrow">
-        <button id="right-arrow" onClick={increase}>
+        <button className="slider-button" id="right-arrow" onClick={increase}>
           {">"}
         </button>
       </div>
