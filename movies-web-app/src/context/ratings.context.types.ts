@@ -1,10 +1,8 @@
-export interface IMovieRating {
-  [movieId: number]: IPayloadType;
-}
+import { Dispatch } from "react";
 
-export interface IMovieRatingProps {
-  movies: IMovieRating,
-  upsertMovies: (items: IMovieRating) => void
+export interface IMovieRatingContextProps {
+  movieRatingState: IMovieRatingsState,
+  movieRatingDispatch: Dispatch<IMovieRatingActions>
 }
 
 export interface IPayloadType {
@@ -12,4 +10,16 @@ export interface IPayloadType {
   review: string;
   image: string;
   title: string;
+  movieId: number
 }
+
+export interface IMovieRatingActions {
+  type: 'upsert',
+  payload: IPayloadType
+}
+
+export interface IMovieRatingsState {
+  [movieId: number]: IPayloadType;
+}
+
+export const initialIMovieRatingState: IMovieRatingsState = {}

@@ -35,7 +35,6 @@ export class MoviesGateway {
                 query
             }
         });
-        debugger;
         return response.data.results;
     }
 

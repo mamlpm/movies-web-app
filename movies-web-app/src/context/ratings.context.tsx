@@ -1,12 +1,27 @@
 import { createContext, useContext, useReducer } from "react";
 import {
-  IMovieRating,
-  IMovieRatingProps,
+  IMovieRatingActions,
+  IMovieRatingContextProps,
+  IMovieRatingsState,
+  initialIMovieRatingState,
 } from "./ratings.context.types";
 
-const MovieRatingContext = createContext<IMovieRatingProps>({
-  movies: {},
-  upsertMovies: (items: IMovieRating) => {},
+export const movieRatingReducer = (
+  state: IMovieRatingsState,
+  action: IMovieRatingActions
+) => {
+  switch (action.type) {
+    case "upsert":
+      debugger;
+      return { ...state, [action.payload.movieId]: action.payload };
+    default:
+      return state;
+  }
+};
+
+const MovieRatingContext = createContext<IMovieRatingContextProps>({
+  movieRatingState: initialIMovieRatingState,
+  movieRatingDispatch: () => {},
 });
 
 export const MoviRatingConsumer = MovieRatingContext.Consumer;

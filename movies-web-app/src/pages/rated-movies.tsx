@@ -6,16 +6,20 @@ const RatedMovies: FC = () => {
   const ratedMovies = useContext(MovieRatingContext);
   return (
     <>
-      {Object.keys(ratedMovies.movies).length > 0 ? (
+      {Object.keys(ratedMovies.movieRatingState).length > 0 ? (
         <ImagesSlider
-          images={Object.keys(ratedMovies.movies).map((item) => {
-            const toReturn = {
-              imagesUrls: ratedMovies.movies[parseInt(item)].image,
-              movieId: parseInt(item),
-              movieTitle: ratedMovies.movies[parseInt(item)].title,
-            };
-            return toReturn;
-          })}
+          images={Object.keys(ratedMovies.movieRatingState).map(
+            (item) => {
+              const toReturn = {
+                imagesUrls:
+                  ratedMovies.movieRatingState[parseInt(item)].image,
+                movieId: parseInt(item),
+                movieTitle:
+                  ratedMovies.movieRatingState[parseInt(item)].title,
+              };
+              return toReturn;
+            }
+          )}
           queriedData={"Películas puntuadas"}
         />
       ) : (
