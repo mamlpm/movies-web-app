@@ -9,7 +9,10 @@ export class MoviesGateway {
         })
     }
 
-    public async getFavouriteMovies(category: "popular" | "top_rated" | "upcoming"): Promise<IMovies[]> {
+    public async getFavouriteMovies(category: "popular" | "top_rated" | "upcoming" | "search"): Promise<IMovies[]> {
+        if (category === 'search') {
+            return [];
+        }
         const response = await this.axios.get(category, {
             params: {
                 api_key: process.env.REACT_APP_MOVIE_DB_API_KEY,
@@ -20,8 +23,11 @@ export class MoviesGateway {
         return response.data.results;
     }
 
-    public async getMoviesByname(query: string): Promise<IMovies[]> {
-        const response = await this.axios.get('', {
+    public async getMoviesByname(query?: string): Promise<IMovies[]> {
+        if (!query) {
+            return [];
+        }
+        const response = await this.axios.get('https://api.themoviedb.org/3/search/movie', {
             params: {
                 api_key: process.env.REACT_APP_MOVIE_DB_API_KEY,
                 language: 'es',
@@ -29,6 +35,7 @@ export class MoviesGateway {
                 query
             }
         });
+        debugger;
         return response.data.results;
     }
 }

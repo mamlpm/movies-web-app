@@ -2,7 +2,7 @@ import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import useSliderReducer from "../hooks/slider-reducer";
 interface IImagesSliderProps {
-  images: { imagesUrls: string; movieId: number }[];
+  images: { imagesUrls: string; movieId: number; movieTitle: string }[];
   queriedData: string;
 }
 
@@ -28,6 +28,7 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
               "https://image.tmdb.org/t/p/w342/" +
               props.images[count].imagesUrls
             }
+            alt={props.images[count].movieTitle}
           />
         </NavLink>
       </div>
@@ -47,6 +48,11 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
                 : "https://image.tmdb.org/t/p/w342/" +
                   props.images[1 + count].imagesUrls
             }
+            alt={
+              count + 1 >= props.images.length
+                ? props.images[count + 1 - props.images.length].movieTitle
+                : props.images[1 + count].movieTitle
+            }
           />
         </NavLink>
       </div>
@@ -65,6 +71,11 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
                   props.images[count + 2 - props.images.length].imagesUrls
                 : "https://image.tmdb.org/t/p/w342/" +
                   props.images[2 + count].imagesUrls
+            }
+            alt={
+              count + 2 >= props.images.length
+                ? props.images[count + 2 - props.images.length].movieTitle
+                : props.images[2 + count].movieTitle
             }
           />
         </NavLink>

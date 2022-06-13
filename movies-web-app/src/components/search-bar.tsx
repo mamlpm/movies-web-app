@@ -17,7 +17,10 @@ const SearchBar: FC = () => {
         />
       </div>
       {searchText.length > 0 ? (
-        <NavLink to={`/search/${searchText}`}>
+        <NavLink
+          style={{ textDecoration: "none" }}
+          to={`/search/${searchText}`}
+        >
           <div className="button">{"->"}</div>
         </NavLink>
       ) : (
