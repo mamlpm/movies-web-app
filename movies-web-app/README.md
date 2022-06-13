@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Run this project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To run this project you need to clone this repository, create a .env file that follows .env.example structure and run npm i.
 
 ## Available Scripts
 
