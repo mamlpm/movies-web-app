@@ -8,22 +8,20 @@ const RatedMovies: FC = () => {
     <>
       {Object.keys(ratedMovies.movieRatingState).length > 0 ? (
         <ImagesSlider
-          images={Object.keys(ratedMovies.movieRatingState).map(
-            (item) => {
-              const toReturn = {
-                imagesUrls:
-                  ratedMovies.movieRatingState[parseInt(item)].image,
-                movieId: parseInt(item),
-                movieTitle:
-                  ratedMovies.movieRatingState[parseInt(item)].title,
-              };
-              return toReturn;
-            }
-          )}
+          images={Object.keys(ratedMovies.movieRatingState).map((item) => {
+            const toReturn = {
+              imagesUrls: ratedMovies.movieRatingState[parseInt(item)].image,
+              movieId: parseInt(item),
+              movieTitle: ratedMovies.movieRatingState[parseInt(item)].title,
+            };
+            return toReturn;
+          })}
           queriedData={"Películas puntuadas"}
         />
       ) : (
-        <p>No has puntuado ninguna película</p>
+        <div className="no-puntuation">
+          <p>No has puntuado ninguna película</p>
+        </div>
       )}
     </>
   );

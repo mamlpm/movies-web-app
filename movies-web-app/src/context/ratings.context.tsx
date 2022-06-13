@@ -12,7 +12,6 @@ export const movieRatingReducer = (
 ) => {
   switch (action.type) {
     case "upsert":
-      debugger;
       return { ...state, [action.payload.movieId]: action.payload };
     default:
       return state;
