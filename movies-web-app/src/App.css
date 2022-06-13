@@ -39,7 +39,7 @@
     "left-arrow image-1 image-2 image-3 right-arrow";
 }
 
-.slider .slider-header > h1 {
+h1 {
   color: white;
 }
 
@@ -116,6 +116,63 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 6fr 2fr;
+  grid-template-areas: "home-icon search my-qualifications";
+  background: black;
+  height: 100px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.header .home-icon {
+  grid-area: home-icon;
+}
+
+.header .search {
+  grid-area: search;
+  align-self: center;
+  justify-self: center;
+}
+
+.header .my-qualifications {
+  grid-area: my-qualifications;
+  justify-self: end;
+}
+
+.search-bar {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 8fr 1fr;
+  grid-template-areas: "search button";
+}
+
+.search-bar .search {
+  grid-area: search;
+}
+
+.search-bar .search > input {
+  height: 30px;
+  width: 650px;
+  font-size: 14pt;
+}
+
+.search-bar .button {
+  grid-area: button;
+  background-color: #04aa6d;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 10px;
+  display: block;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
