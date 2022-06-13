@@ -38,4 +38,18 @@ export class MoviesGateway {
         debugger;
         return response.data.results;
     }
+
+    public async getImageAndNameMovieByid(id: number): Promise<{ name: string, imagePath: string }> {
+        if (id === 0) return { name: '', imagePath: '' }
+        const response = await this.axios.get(id.toString(), {
+            params: {
+                api_key: process.env.REACT_APP_MOVIE_DB_API_KEY,
+                language: 'es',
+            }
+        });
+        return {
+            name: response.data.title,
+            imagePath: response.data.backdrop_path
+        }
+    }
 }
