@@ -6,7 +6,7 @@ const SearchPage: FC = () => {
   const { searchName } = useParams();
   return (
     <div>
-      <ImagesSliderWrapper queryType="search" searchText={searchName} />
+      <ImagesSliderWrapper queryType="search" searchText={searchName} key={searchName} />
     </div>
   );
 };

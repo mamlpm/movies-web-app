@@ -19,7 +19,7 @@ const RatedMovies: FC = () => {
           queriedData={"Películas puntuadas"}
         />
       ) : (
-        <div className="no-puntuation">
+        <div className="no-slider">
           <p>No has puntuado ninguna película</p>
         </div>
       )}

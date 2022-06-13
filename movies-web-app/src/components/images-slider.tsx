@@ -24,7 +24,7 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
         </div>
       )}
       <div className="image-1">
-        <NavLink to={`/rating/${props.images[count].movieId}`}>
+        <NavLink to={`/mylist/${props.images[count].movieId}`}>
           <img
             src={
               "https://image.tmdb.org/t/p/w342/" +
@@ -37,7 +37,7 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
       {props.images.length > 1 && (
         <div className="image-2">
           <NavLink
-            to={`/rating/${
+            to={`/mylist/${
               count + 1 >= props.images.length
                 ? props.images[count + 1 - props.images.length].movieId
                 : props.images[1 + count].movieId
@@ -63,7 +63,7 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
       {props.images.length > 2 && (
         <div className="image-3">
           <NavLink
-            to={`/rating/${
+            to={`/mylist/${
               count + 2 >= props.images.length
                 ? props.images[count + 2 - props.images.length].movieId
                 : props.images[2 + count].movieId

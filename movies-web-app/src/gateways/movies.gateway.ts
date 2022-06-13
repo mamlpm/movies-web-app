@@ -23,7 +23,7 @@ export class MoviesGateway {
         return response.data.results;
     }
 
-    public async getMoviesByname(query?: string): Promise<IMovies[]> {
+    public async getMoviesByName(query?: string): Promise<IMovies[]> {
         if (!query) {
             return [];
         }

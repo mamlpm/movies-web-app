@@ -12,8 +12,8 @@ const RouterApp: FC = () => {
         <Route path="/" element={<Navigate to="/inicio" replace={true} />} />
         <Route path="/inicio" element={<MainPage />} />
         <Route path="/search/:searchName" element={<SearchPage />} />
-        <Route path="/rating" element={<RatedMovies />} />
-        <Route path="/rating/:movieId" element={<MovieRating />} />
+        <Route path="/mylist" element={<RatedMovies />} />
+        <Route path="/mylist/:movieId" element={<MovieRating />} />
       </Routes>
     </Suspense>
   );

@@ -17,7 +17,7 @@ const ImagesSliderWrapper: FC<IImagesSliderWrapperProps> = (props) => {
   const { isLoading, error, data } = useQuery(
     props.queryType,
     props.queryType === "search"
-      ? async () => moviesGateway.getMoviesByname(props.searchText)
+      ? async () => moviesGateway.getMoviesByName(props.searchText)
       : async () => moviesGateway.getFavouriteMovies(props.queryType)
   );
 
@@ -28,7 +28,7 @@ const ImagesSliderWrapper: FC<IImagesSliderWrapperProps> = (props) => {
 
   return (
     <>
-      {data && (
+      {data && data.length > 0 ? (
         <ImagesSlider
           images={data.map((item) => {
             return {
@@ -39,6 +39,12 @@ const ImagesSliderWrapper: FC<IImagesSliderWrapperProps> = (props) => {
           })}
           queriedData={sliderNames[props.queryType]}
         />
+      ) : (
+        <div className="no-slider">
+          <p>
+            No se han encontrado películas que coincidan con el texto insertado
+          </p>
+        </div>
       )}
     </>
   );

@@ -38,10 +38,6 @@ const MovieRating: FC = () => {
     moviesGateway.getImageAndNameMovieByid(parseInt(movieId ?? "0"))
   );
   const handleUpsert = () => {
-    if (rating.review === "") {
-      window.alert("No se ha cumplimentado el campo review, no se guardará nada.");
-      return;
-    }
 
     if (rating.rating > 10 || rating.rating < 0) {
       window.alert("Inserte una puntuación válida");
@@ -58,7 +54,13 @@ const MovieRating: FC = () => {
     window.alert("Película puntuada");
   };
   const handleChange = (event: any) => {
-    setRating({ ...rating, [event.target.name]: event.target.value });
+    setRating({
+      ...rating,
+      [event.target.name]:
+        event.target.name === "rating"
+          ? parseInt(event.target.value)
+          : event.target.value,
+    });
   };
 
   if (isLoading) return <div>Loading...</div>;

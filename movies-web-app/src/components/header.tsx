@@ -14,7 +14,7 @@ const Header: FC = () => {
         <SearchBar />
       </div>
       <div className="my-qualifications">
-        <NavLink style={{ textDecoration: "none" }} to={"/rating"}>
+        <NavLink style={{ textDecoration: "none" }} to={"/mylist"}>
           <h1>{"Mis puntuaciones"}</h1>
         </NavLink>
       </div>
