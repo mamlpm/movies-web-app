@@ -39,8 +39,8 @@ export class MoviesGateway {
         return response.data.results;
     }
 
-    public async getImageAndNameMovieByid(id: number): Promise<{ name: string, imagePath: string }> {
-        if (id === 0) return { name: '', imagePath: '' }
+    public async getImageAndNameMovieByid(id: number): Promise<{ name: string, imagePath: string, poster_path: string }> {
+        if (id === 0) return { name: '', imagePath: '', poster_path: '' }
         const response = await this.axios.get(id.toString(), {
             params: {
                 api_key: process.env.REACT_APP_MOVIE_DB_API_KEY,
@@ -49,7 +49,8 @@ export class MoviesGateway {
         });
         return {
             name: response.data.title,
-            imagePath: response.data.backdrop_path
+            imagePath: response.data.backdrop_path,
+            poster_path: response.data.poster_path
         }
     }
 }

@@ -1,22 +1,15 @@
 export interface IMovieRating {
-    [movieId: number]: {
-      rating: number;
-      review: string;
-    };
-  }
-  
-  export interface IReducerPayloadType {
-    movieId: number;
-    rating: number;
-    review: string;
-  }
-  
-  export enum MovieRatingKind {
-    CREATE = "CREATE",
-    UPDATE = "UPDATE",
-  }
-  
-  export interface MovieRatingAction {
-    type: MovieRatingKind;
-    payload: IReducerPayloadType;
-  }
+  [movieId: number]: IPayloadType;
+}
+
+export interface IMovieRatingProps {
+  movies: IMovieRating,
+  upsertMovies: (items: IMovieRating) => void
+}
+
+export interface IPayloadType {
+  rating: number;
+  review: string;
+  image: string;
+  title: string;
+}

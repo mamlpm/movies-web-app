@@ -1,23 +1,59 @@
-import { FC, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { IReducerPayloadType } from "../context/ratings.context.types";
+import MovieRatingContext from "../context/ratings.context";
+import { IMovieRating } from "../context/ratings.context.types";
 import { MoviesGateway } from "../gateways/movies.gateway";
 
 const MovieRating: FC = () => {
   const moviesGateway = new MoviesGateway();
   const { movieId } = useParams();
-  const [rating, setRating] = useState<IReducerPayloadType>({
+  const moviesRatingContext = useContext(MovieRatingContext);
+  const [rating, setRating] = useState<{
+    movieId: number;
+    rating: number;
+    review: string;
+    image: string;
+  }>({
     movieId: 0,
     rating: 0,
     review: "",
+    image: "",
   });
-  const handleChange = (event: any) => {
-    setRating({ ...rating, [event.target.name]: event.target.value });
-  };
+
+  useEffect(() => {
+    setRating({
+      movieId: parseInt(movieId ?? "0"),
+      rating: moviesRatingContext.movies[parseInt(movieId ?? "0")]?.rating ?? 0,
+      review:
+        moviesRatingContext.movies[parseInt(movieId ?? "0")]?.review ?? "",
+      image: moviesRatingContext.movies[parseInt(movieId ?? "0")]?.image ?? "",
+    });
+  }, []);
   const { isLoading, error, data } = useQuery("getMovieById", async () =>
     moviesGateway.getImageAndNameMovieByid(parseInt(movieId ?? "0"))
   );
+  const handleUpsert = () => {
+    if (rating.rating === 0 || rating.review === "") {
+      window.alert("Por favor, cumplimente todos los campos");
+      return;
+    }
+
+    const values: IMovieRating = {
+      ...moviesRatingContext.movies,
+      [rating.movieId]: {
+        rating: rating.rating,
+        review: rating.review,
+        image: data ? data.poster_path : "",
+        title: data ? data.name : "",
+      },
+    };
+    moviesRatingContext.upsertMovies(values);
+    window.alert("Película puntuada");
+  };
+  const handleChange = (event: any) => {
+    setRating({ ...rating, [event.target.name]: event.target.value });
+  };
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -61,7 +97,7 @@ const MovieRating: FC = () => {
         />
       </div>
       <div className="submit">
-        <button>Publicar</button>
+        <button onClick={handleUpsert}>Publicar</button>
       </div>
     </div>
   );

@@ -16,11 +16,13 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
       <div className="slider-header">
         <h1>{props.queriedData}</h1>
       </div>
-      <div className="left-arrow">
-        <button className="slider-button" id="left-arrow" onClick={decrease}>
-          {"<"}
-        </button>
-      </div>
+      {props.images.length > 3 && (
+        <div className="left-arrow">
+          <button className="slider-button" id="left-arrow" onClick={decrease}>
+            {"<"}
+          </button>
+        </div>
+      )}
       <div className="image-1">
         <NavLink to={`/rating/${props.images[count].movieId}`}>
           <img
@@ -32,59 +34,65 @@ const ImagesSlider: FC<IImagesSliderProps> = (props) => {
           />
         </NavLink>
       </div>
-      <div className="image-2">
-        <NavLink
-          to={`/rating/${
-            count + 1 >= props.images.length
-              ? props.images[count + 1 - props.images.length].movieId
-              : props.images[1 + count].movieId
-          }`}
-        >
-          <img
-            src={
+      {props.images.length > 1 && (
+        <div className="image-2">
+          <NavLink
+            to={`/rating/${
               count + 1 >= props.images.length
-                ? "https://image.tmdb.org/t/p/w342/" +
-                  props.images[count + 1 - props.images.length].imagesUrls
-                : "https://image.tmdb.org/t/p/w342/" +
-                  props.images[1 + count].imagesUrls
-            }
-            alt={
-              count + 1 >= props.images.length
-                ? props.images[count + 1 - props.images.length].movieTitle
-                : props.images[1 + count].movieTitle
-            }
-          />
-        </NavLink>
-      </div>
-      <div className="image-3">
-        <NavLink
-          to={`/rating/${
-            count + 2 >= props.images.length
-              ? props.images[count + 2 - props.images.length].movieId
-              : props.images[2 + count].movieId
-          }`}
-        >
-          <img
-            src={
+                ? props.images[count + 1 - props.images.length].movieId
+                : props.images[1 + count].movieId
+            }`}
+          >
+            <img
+              src={
+                count + 1 >= props.images.length
+                  ? "https://image.tmdb.org/t/p/w342/" +
+                    props.images[count + 1 - props.images.length].imagesUrls
+                  : "https://image.tmdb.org/t/p/w342/" +
+                    props.images[1 + count].imagesUrls
+              }
+              alt={
+                count + 1 >= props.images.length
+                  ? props.images[count + 1 - props.images.length].movieTitle
+                  : props.images[1 + count].movieTitle
+              }
+            />
+          </NavLink>
+        </div>
+      )}
+      {props.images.length > 2 && (
+        <div className="image-3">
+          <NavLink
+            to={`/rating/${
               count + 2 >= props.images.length
-                ? "https://image.tmdb.org/t/p/w342/" +
-                  props.images[count + 2 - props.images.length].imagesUrls
-                : "https://image.tmdb.org/t/p/w342/" +
-                  props.images[2 + count].imagesUrls
-            }
-            alt={
-              count + 2 >= props.images.length
-                ? props.images[count + 2 - props.images.length].movieTitle
-                : props.images[2 + count].movieTitle
-            }
-          />
-        </NavLink>
-      </div>
-      <div className="right-arrow">
-        <button className="slider-button" id="right-arrow" onClick={increase}>
-          {">"}
-        </button>
-      </div>
+                ? props.images[count + 2 - props.images.length].movieId
+                : props.images[2 + count].movieId
+            }`}
+          >
+            <img
+              src={
+                count + 2 >= props.images.length
+                  ? "https://image.tmdb.org/t/p/w342/" +
+                    props.images[count + 2 - props.images.length].imagesUrls
+                  : "https://image.tmdb.org/t/p/w342/" +
+                    props.images[2 + count].imagesUrls
+              }
+              alt={
+                count + 2 >= props.images.length
+                  ? props.images[count + 2 - props.images.length].movieTitle
+                  : props.images[2 + count].movieTitle
+              }
+            />
+          </NavLink>
+        </div>
+      )}
+      {props.images.length > 3 && (
+        <div className="right-arrow">
+          <button className="slider-button" id="right-arrow" onClick={increase}>
+            {">"}
+          </button>
+        </div>
+      )}
     </div>
   );
 };
