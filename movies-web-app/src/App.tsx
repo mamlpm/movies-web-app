@@ -7,7 +7,7 @@ import { useReducer } from "react";
 import { initialIMovieRatingState } from "./context/ratings.context.types";
 import {
   movieRatingReducer,
-  MoviRatingProvider,
+  MovieRatingProvider,
 } from "./context/ratings.context";
 
 const queryClient = new QueryClient();
@@ -24,9 +24,9 @@ function App() {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <Header />
-        <MoviRatingProvider value={movieContextValues}>
+        <MovieRatingProvider value={movieContextValues}>
           <RouterApp />
-        </MoviRatingProvider>
+        </MovieRatingProvider>
       </QueryClientProvider>
     </BrowserRouter>
   );

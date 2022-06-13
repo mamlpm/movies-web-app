@@ -23,6 +23,6 @@ const MovieRatingContext = createContext<IMovieRatingContextProps>({
   movieRatingDispatch: () => {},
 });
 
-export const MoviRatingConsumer = MovieRatingContext.Consumer;
-export const MoviRatingProvider = MovieRatingContext.Provider;
+export const MovieRatingConsumer = MovieRatingContext.Consumer;
+export const MovieRatingProvider = MovieRatingContext.Provider;
 export default MovieRatingContext;
