@@ -1,27 +1,10 @@
 import { createContext, useContext, useReducer } from "react";
-
-interface IMovieRating {
-  [movieId: number]: {
-    rating: number;
-    review: string;
-  };
-}
-
-interface IReducerPayloadType {
-  movieId: number;
-  rating: number;
-  review: string;
-}
-
-enum MovieRatingKind {
-  CREATE = "CREATE",
-  UPDATE = "UPDATE",
-}
-
-interface MovieRatingAction {
-  type: MovieRatingKind;
-  payload: IReducerPayloadType;
-}
+import {
+  IMovieRating,
+  IReducerPayloadType,
+  MovieRatingAction,
+  MovieRatingKind,
+} from "./ratings.context.types";
 
 const MovieRatingContext = createContext({} as IMovieRating);
 

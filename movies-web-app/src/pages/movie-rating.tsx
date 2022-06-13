@@ -1,11 +1,20 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { IReducerPayloadType } from "../context/ratings.context.types";
 import { MoviesGateway } from "../gateways/movies.gateway";
 
 const MovieRating: FC = () => {
   const moviesGateway = new MoviesGateway();
   const { movieId } = useParams();
+  const [rating, setRating] = useState<IReducerPayloadType>({
+    movieId: 0,
+    rating: 0,
+    review: "",
+  });
+  const handleChange = (event: any) => {
+    setRating({ ...rating, [event.target.name]: event.target.value });
+  };
   const { isLoading, error, data } = useQuery("getMovieById", async () =>
     moviesGateway.getImageAndNameMovieByid(parseInt(movieId ?? "0"))
   );
@@ -30,13 +39,26 @@ const MovieRating: FC = () => {
         <label>
           <h3>Valoración (1 al 10)</h3>
         </label>
-        <input id="rating" type="number" />
+        <input
+          id="rating"
+          type="number"
+          name="rating"
+          value={rating.rating}
+          onChange={handleChange}
+        />
       </div>
       <div className="review">
         <label>
           <h3>Review</h3>
         </label>
-        <textarea id="review" name="review" rows={15} cols={62} />
+        <textarea
+          id="review"
+          name="review"
+          rows={15}
+          cols={62}
+          value={rating.review}
+          onChange={handleChange}
+        />
       </div>
       <div className="submit">
         <button>Publicar</button>
